@@ -1,6 +1,13 @@
 /* feedreader.js */
 
 $(function() {
+  // Array of indices - used for randomizstion
+  const indices = [0, 1, 2, 3];
+
+  // Generates a random number - used for Index
+  function randomIndex() {
+    return indices[Math.floor(Math.random() * indices.length)];
+  }
 
   /* Test Suite - "RSS Feeds" */
   describe('RSS Feeds', () => {
@@ -46,13 +53,8 @@ $(function() {
 
   /* Test Suite - "Initial Entries" */
   describe('Initial Entries', () => {
-    const indices = [0, 1, 2, 3];
-
-    // Generates a random number - used for Index
-    function randomIndex() {
-      return indices[Math.floor(Math.random() * indices.length)];
-    }
-
+    // Before running the test, perform setup
+    // load feed using a randomly generated index every time
     beforeEach(done => {
       loadFeed(randomIndex(), done);
     });
@@ -66,13 +68,10 @@ $(function() {
   /* Test Suite - "New Feed Selection" */
   describe('New Feed Selection', () => {
     let initialFeedIndex, updatedFeedIndex, initialFeedContent, updatedFeedContent;
-    const indices = [0, 1, 2, 3];
 
-    // Generates a random number - used for Index
-    function randomIndex() {
-      return indices[Math.floor(Math.random() * indices.length)];
-    }
-
+    // Before running the test, perform setup
+    // initially, load a feed using a randomly generated index
+    // later, load a different feed using another randomly generated index (different than the initial Index)
     beforeEach(done => {
       // Pick a random index for 'initialFeedIndex'
       initialFeedIndex = randomIndex();
